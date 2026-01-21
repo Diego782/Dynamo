@@ -1,0 +1,32 @@
+{
+  "name": "dynamodb-dax-demo-app",
+  "version": "1.0.0",
+  "description": "Demo application showcasing DynamoDB and DAX integration",
+  "main": "src/handlers/products.js",
+  "scripts": {
+    "test": "jest",
+    "lint": "eslint src/",
+    "build": "zip -r function.zip src/ node_modules/",
+    "clean": "rm -f function.zip"
+  },
+  "keywords": [
+    "dynamodb",
+    "dax",
+    "aws",
+    "lambda"
+  ],
+  "author": "DevOps Team",
+  "license": "MIT",
+  "dependencies": {
+    "amazon-dax-client": "^2.0.0",
+    "aws-sdk": "^2.1500.0",
+    "uuid": "^9.0.1"
+  },
+  "devDependencies": {
+    "eslint": "^8.54.0",
+    "jest": "^29.7.0"
+  },
+  "engines": {
+    "node": ">=18.x"
+  }
+}

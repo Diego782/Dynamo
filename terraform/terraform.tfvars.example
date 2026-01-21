@@ -1,0 +1,80 @@
+# ============================================================================
+# EXAMPLE TERRAFORM VARIABLES
+# ============================================================================
+# Este archivo muestra ejemplos de variables que puedes personalizar
+# NO COMMITEAR ESTE ARCHIVO SI CONTIENE VALORES REALES
+# ============================================================================
+
+# AWS Region
+region = "us-east-1"
+
+# Project Name (usado para prefijos de recursos)
+project_name = "dynamo-dax-demo"
+
+# Owner / Team
+owner = "DevOps-Team"
+
+# VPC Configuration
+vpc_cidr = "10.0.0.0/16"
+
+# Availability Zones
+availability_zones = [
+  "us-east-1a",
+  "us-east-1b"
+]
+
+# ============================================================================
+# EJEMPLOS DE PERSONALIZACION
+# ============================================================================
+
+# Usar región diferente
+# region = "us-west-2"
+# availability_zones = ["us-west-2a", "us-west-2b", "us-west-2c"]
+
+# Usar CIDR diferente (evitar conflictos con VPCs existentes)
+# vpc_cidr = "172.16.0.0/16"
+
+# Cambiar naming
+# project_name = "mi-proyecto-aws"
+# owner = "mi-equipo"
+
+# ============================================================================
+# VARIABLES POR AMBIENTE
+# ============================================================================
+
+# DEV: Optimizado para desarrollo
+# - 1 NAT Gateway
+# - 1 DAX node (dax.t3.small)
+# - Sin alarmas
+# - Logs: 7 días retención
+
+# STAGING: Similar a producción pero más pequeño
+# - 2 NAT Gateways
+# - 2 DAX nodes (dax.t3.medium)
+# - Con alarmas
+# - Logs: 30 días retención
+
+# PROD: Production-grade
+# - 3 NAT Gateways (una por AZ)
+# - 3 DAX nodes (dax.r5.large)
+# - Alarmas completas
+# - Logs: 90 días retención
+# - VPC Flow Logs habilitados
+
+# ============================================================================
+# NOTAS IMPORTANTES
+# ============================================================================
+
+# 1. Este archivo es .gitignore por defecto
+#    Copiar a terraform/envs/{env}/terraform.tfvars para usar
+
+# 2. Para secretos, usar AWS Secrets Manager o SSM Parameter Store:
+#    data "aws_secretsmanager_secret_version" "example" {
+#      secret_id = "my-secret"
+#    }
+
+# 3. Validar CIDR ranges no se superpongan entre ambientes
+
+# 4. Considerar costos antes de cambiar tipos de instancia
+
+# 5. En producción, usar Terraform Workspaces o directorios separados
